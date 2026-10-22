@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="am" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>የአካባቢ ሳይንስ 6ኛ ክፍል - ምዕራፍ ሦስት በይነ-መረብ ፈተና</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Sans Ethiopic & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            ethiopic: ['"Noto Sans Ethiopic"', 'sans-serif'],
+            sans: ['"Inter"', '"Noto Sans Ethiopic"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+              800: '#115e59',
+              900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Noto Sans Ethiopic', 'Inter', sans-serif;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-full flex flex-col text-slate-800 bg-slate-50 antialiased select-none">
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3 rtl:space-x-reverse">
+        <div class="w-10 h-10 rounded-xl bg-brand-700 text-white flex items-center justify-center font-bold text-lg shadow-sm">
+          ሳይንስ
+        </div>
+        <div>
+          <h1 class="text-base sm:text-lg font-bold text-slate-900 leading-tight">የአካባቢ ሳይንስ 6ኛ ክፍል</h1>
+          <p class="text-xs text-brand-700 font-medium">ምዕራፍ ሦስት፡ የተፈጥሮ አካባቢ (60 ጥያቄዎች)</p>
+        </div>
+      </div>
+      <div id="header-status" class="hidden flex items-center gap-3">
+        <div class="hidden md:flex flex-col text-right">
+          <span id="active-student-display" class="text-xs font-semibold text-slate-700 truncate max-w-[140px]">ተማሪ</span>
+          <span id="active-id-display" class="text-[11px] text-slate-500">መታወቂያ፡ -</span>
+        </div>
+        <div class="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs sm:text-sm font-semibold flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span>ውጤት፡ <span id="nav-score">0</span> / 60</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-6 lg:p-8 flex flex-col justify-center">
+
+    <!-- SCREEN 1: Registration Screen -->
+    <section id="screen-register" class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-6 sm:p-10 transition-all">
+      <div class="max-w-2xl mx-auto text-center">
+        <div class="inline-flex p-3 rounded-2xl bg-brand-50 text-brand-700 mb-4 ring-8 ring-brand-50/50">
+          <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">የተማሪዎች በይነ-መረብ መፈተኛ መድረክ</h2>
+        <p class="text-sm sm:text-base text-slate-600 mb-8">
+          ይህ ፈተና በኢትዮጵያ የ6ኛ ክፍል አካባቢ ሳይንስ የተማሪ መጽሐፍ <strong>ምዕራፍ ሦስት (የተፈጥሮ አካባቢ)</strong> ይዘቶች ላይ ተመሥርቶ የተዘጋጀ 60 ጥያቄዎችን የያዘ ነው። ፈተናውን ከመጀመርዎ በፊት ሙሉ ስምዎን እና መታወቂያዎን በትክክል ያስገቡ።
+        </p>
+
+        <!-- Notification Warning -->
+        <div id="reg-error" class="hidden mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-sm text-left flex items-start gap-3">
+          <svg class="w-5 h-5 text-rose-500 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <span id="reg-error-text">እባክዎ ሙሉ ስምዎን እና መታወቂያ ቁጥርዎን በትክክል ይሙሉ!</span>
+        </div>
+
+        <form id="registration-form" onsubmit="handleStartQuiz(event)" class="space-y-5 text-left max-w-lg mx-auto">
+          <div>
+            <label for="student-name" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">የተማሪው ሙሉ ስም (Full Name) <span class="text-rose-500">*</span></label>
+            <input type="text" id="student-name" required placeholder="ምሳሌ፡ ዮናስ አበበ ከበደ" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none transition text-slate-900 bg-white placeholder:text-slate-400">
+          </div>
+          <div>
+            <label for="student-id" class="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1.5">የመታወቂያ / የፈተና ቁጥር (Student ID) <span class="text-rose-500">*</span></label>
+            <input type="text" id="student-id" required placeholder="ምሳሌ፡ ETH-6042" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-600 focus:border-brand-600 outline-none transition text-slate-900 bg-white placeholder:text-slate-400">
+          </div>
+
+          <!-- Exam Feature Badges -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2 text-xs text-slate-600 font-medium">
+            <div class="bg-slate-100/80 p-2.5 rounded-lg flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span> 60 ምርጫ ጥያቄዎች
+            </div>
+            <div class="bg-slate-100/80 p-2.5 rounded-lg flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-blue-500"></span> ቅጽበታዊ እርማት
+            </div>
+            <div class="bg-slate-100/80 p-2.5 rounded-lg flex items-center gap-2 col-span-2 sm:col-span-1">
+              <span class="w-2 h-2 rounded-full bg-purple-500"></span> ሳይንሳዊ ማብራሪያ
+            </div>
+          </div>
+
+          <button type="submit" class="w-full mt-4 py-3.5 px-6 rounded-xl bg-brand-700 hover:bg-brand-800 text-white font-bold text-base shadow-lg shadow-brand-700/20 active:scale-[0.99] transition duration-150 flex items-center justify-center gap-2">
+            <span>ፈተናውን ጀምር (Start Quiz)</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: Quiz Assessment Screen -->
+    <section id="screen-quiz" class="hidden flex-col gap-6">
+
+      <!-- Progress bar and statistics card -->
+      <div class="bg-white rounded-2xl border border-slate-200/90 p-4 sm:p-5 shadow-xs">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm mb-2.5">
+          <div class="flex items-center gap-2 font-bold text-slate-800">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-brand-100 text-brand-800 text-xs" id="badge-q-number">1</span>
+            <span>ጥያቄ <span id="q-counter">1</span> ከ 60</span>
+            <span id="topic-badge" class="ml-1 text-[11px] font-normal px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600">ክፍል 1</span>
+          </div>
+          <div class="flex items-center gap-4 text-xs font-semibold">
+            <span class="text-emerald-700 bg-emerald-50 px-2 py-1 rounded-md border border-emerald-100">ትክክል፡ <span id="stat-correct">0</span></span>
+            <span class="text-rose-700 bg-rose-50 px-2 py-1 rounded-md border border-rose-100">የተሳሳተ፡ <span id="stat-wrong">0</span></span>
+            <span class="text-slate-600 bg-slate-100 px-2 py-1 rounded-md">ያልተመለሱ፡ <span id="stat-unanswered">60</span></span>
+          </div>
+        </div>
+
+        <!-- Progress bar line -->
+        <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+          <div id="quiz-progress-bar" class="bg-brand-600 h-2.5 rounded-full transition-all duration-300" style="width: 1.66%"></div>
+        </div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-5 sm:p-8 transition-all">
+        <!-- Question Prompt -->
+        <div class="mb-6">
+          <h3 id="question-text" class="text-base sm:text-lg lg:text-xl font-bold text-slate-900 leading-snug">
+            1. ጥያቄ እዚህ ይቀርባል...
+          </h3>
+        </div>
+
+        <!-- Options Container -->
+        <div id="options-container" class="space-y-3 mb-6">
+          <!-- Options rendered via JS -->
+        </div>
+
+        <!-- Feedback & Scientific Explanation Box (Hidden until answered) -->
+        <div id="explanation-box" class="hidden rounded-xl p-4 sm:p-5 border transition-all text-sm leading-relaxed mb-6">
+          <div class="flex items-center gap-2 mb-2 font-bold">
+            <span id="feedback-icon" class="w-6 h-6 rounded-full flex items-center justify-center text-white text-xs">✓</span>
+            <span id="feedback-title" class="text-base font-bold">ትክክል ነው!</span>
+          </div>
+          <p id="explanation-content" class="text-slate-700 font-normal">
+            እዚህ ሳይንሳዊ ማብራሪያው በዝርዝር ይቀርባል።
+          </p>
+        </div>
+
+        <!-- Action Control Buttons -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-slate-100">
+          <button id="btn-prev" onclick="handlePrevQuestion()" class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-semibold flex items-center gap-2 transition disabled:opacity-40 disabled:cursor-not-allowed">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <span>ወደ ኋላ (Back)</span>
+          </button>
+
+          <div class="flex items-center gap-2">
+            <button id="btn-next" onclick="handleNextQuestion()" class="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold flex items-center gap-2 shadow-sm transition">
+              <span id="next-btn-label">ቀጣይ / ዝለል (Next)</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+            <button id="btn-final-submit" onclick="handleSubmitQuiz()" class="hidden px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-md shadow-emerald-600/20 transition flex items-center gap-2">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              <span>ፈተናውን ጨርስ (Submit)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Question Jump Palette Grid -->
+      <div class="bg-white rounded-2xl border border-slate-200/90 p-5 shadow-xs">
+        <div class="flex items-center justify-between mb-3">
+          <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">ወደ ጥያቄዎች በፍጥነት ዝለል (Question Navigator)</h4>
+          <div class="flex items-center gap-3 text-[11px] text-slate-500">
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> ትክክል</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> ስህተት</span>
+            <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-200"></span> ያልተመለሰ</span>
+          </div>
+        </div>
+        <div id="question-palette" class="grid grid-cols-6 sm:grid-cols-10 md:grid-cols-12 gap-1.5 custom-scrollbar max-h-48 overflow-y-auto p-1">
+          <!-- Palette buttons generated via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: Results & Teacher Notification Dashboard -->
+    <section id="screen-result" class="hidden flex-col gap-6">
+      <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-10 text-center">
+        <div id="result-badge-icon" class="inline-flex p-4 rounded-full bg-emerald-100 text-emerald-700 mb-4 ring-8 ring-emerald-50">
+          <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-1">የፈተና ውጤት ማጠቃለያ</h2>
+        <p class="text-sm text-slate-600 mb-6">የ6ኛ ክፍል አካባቢ ሳይንስ ምዕራፍ ሦስት ፈተናን በተሳካ ሁኔታ አጠናቀዋል!</p>
+
+        <!-- Student Identification Meta Box -->
+        <div class="max-w-md mx-auto grid grid-cols-2 gap-3 p-4 rounded-xl bg-slate-50 border border-slate-200 text-left mb-6 text-xs sm:text-sm">
+          <div>
+            <span class="text-slate-500 block text-[11px]">የተማሪ ስም</span>
+            <strong id="res-student-name" class="text-slate-900">-</strong>
+          </div>
+          <div>
+            <span class="text-slate-500 block text-[11px]">መታወቂያ ቁጥር</span>
+            <strong id="res-student-id" class="text-slate-900">-</strong>
+          </div>
+          <div>
+            <span class="text-slate-500 block text-[11px]">የተፈተነበት ቀን</span>
+            <strong id="res-exam-date" class="text-slate-900">-</strong>
+          </div>
+          <div>
+            <span class="text-slate-500 block text-[11px]">የውጤት ሁኔታ</span>
+            <strong id="res-exam-grade" class="text-brand-700 font-bold">-</strong>
+          </div>
+        </div>
+
+        <!-- Score Dashboard Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-8">
+          <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-100 text-center">
+            <span class="text-xs font-semibold text-emerald-800 uppercase block">ጠቅላላ ውጤት</span>
+            <span id="res-score-number" class="text-3xl font-black text-emerald-700">0</span>
+            <span class="text-xs text-emerald-600 block font-medium">ከ 60 ነጥብ</span>
+          </div>
+          <div class="p-4 rounded-xl bg-blue-50 border border-blue-100 text-center">
+            <span class="text-xs font-semibold text-blue-800 uppercase block">በመቶኛ</span>
+            <span id="res-percent" class="text-3xl font-black text-blue-700">0%</span>
+            <span class="text-xs text-blue-600 block font-medium">መቶኛ ድርሻ</span>
+          </div>
+          <div class="p-4 rounded-xl bg-rose-50 border border-rose-100 text-center">
+            <span class="text-xs font-semibold text-rose-800 uppercase block">የተሳሳቱ</span>
+            <span id="res-wrong" class="text-3xl font-black text-rose-700">0</span>
+            <span class="text-xs text-rose-600 block font-medium">ጥያቄዎች</span>
+          </div>
+          <div class="p-4 rounded-xl bg-amber-50 border border-amber-100 text-center">
+            <span class="text-xs font-semibold text-amber-800 uppercase block">ያልተመለሱ</span>
+            <span id="res-skipped" class="text-3xl font-black text-amber-700">0</span>
+            <span class="text-xs text-amber-600 block font-medium">የተዘለሉ</span>
+          </div>
+        </div>
+
+        <!-- Teacher Email & Notification Action Box -->
+        <div class="max-w-xl mx-auto bg-slate-900 text-white p-6 rounded-2xl text-left shadow-lg">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-8 h-8 rounded-lg bg-brand-500/20 text-brand-400 flex items-center justify-center font-bold">@</div>
+            <div>
+              <h4 class="text-sm font-bold text-white">ውጤትን ለመምህሩ በኢሜይል መላኪያ (Send Score to Teacher)</h4>
+              <p class="text-xs text-slate-400">የተማሪውን ውጤት በቀጥታ ወደ መምህሩ ይላኩ፡ <strong class="text-brand-300">mesayferedegn2@gmail.com</strong></p>
+            </div>
+          </div>
+
+          <div class="space-y-3 mt-4">
+            <a id="btn-email-teacher" href="#" target="_blank" class="w-full py-3 px-5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-sm flex items-center justify-center gap-2 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+              <span>ውጤቴን በኢሜይል ላክ (Email Score to Teacher)</span>
+            </a>
+            
+            <button onclick="handleCopyReport()" class="w-full py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium flex items-center justify-center gap-2 border border-slate-700 transition">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+              <span id="copy-btn-text">የውጤት ሪፖርቱን ኮፒ አድርግ (Copy Text Report)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Review answers toggle -->
+        <div class="mt-8 flex items-center justify-center gap-4">
+          <button onclick="handleReviewQuiz()" class="px-5 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold text-sm transition">
+            ጥያቄዎችንና ማብራሪያዎችን ከልስ (Review All Questions)
+          </button>
+          <button onclick="handleRestartQuiz()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
+            እንደገና ጀምር (Restart Quiz)
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+    የአካባቢ ሳይንስ 6ኛ ክፍል - ምዕራፍ ሦስት ክለሳና ፈተና | ኢትዮጵያ
+  </footer>
+
+  <!-- Notification Toast Modal -->
+  <div id="toast-message" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-slate-900 text-white text-xs px-4 py-3 rounded-xl shadow-xl flex items-center gap-2">
+    <span id="toast-text">መልእክት</span>
+  </div>
+
+  <script>
+    /*
+      The complete 60 questions transcribed from Grade 6 Environmental Science Chapter 3 exam.
+      Equally distributed answer keys: 15 of each: A (ሀ), B (ለ), C (ሐ), D (መ).
+      Every question includes a comprehensive, verified Amharic scientific explanation.
+    */
+    const QUIZ_QUESTIONS = [
+      // 1 - 10
+      {
+        id: 1,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "1. በአንድ በተወሰነ አካባቢ ለረዥም ጊዜ (ቢያንስ ለ 30 ዓመታት) የሚከሰት የአየር ጠባይ ድምር ውጤት ምን ይባላል?",
+        options: [
+          { key: "ሀ", text: "የአየር ሁኔታ" },
+          { key: "ለ", text: "የአየር ንብረት" },
+          { key: "ሐ", text: "የአየር ግፊት" },
+          { key: "መ", text: "የአየር እርጥበት" }
+        ],
+        answer: "ለ",
+        explanation: "የአየር ንብረት (Climate) ማለት በአንድ በተወሰነ ቦታ ለረዥም ጊዜ (ቢያንስ ለ30 ዓመታትና ከዚያ በላይ) የተመዘገበ የየዕለቱ የአየር ጠባይ ድምር ውጤት ነው። የአየር ሁኔታ (Weather) ግን ለአጭር ጊዜ (በደቂቃ፣ በሰዓት ወይም በቀን) የሚከሰት ነው።"
+      },
+      {
+        id: 2,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "2. በአንድ አካባቢ ተመሳሳይ የአየር ሁኔታ የሚታይበት የመሬት ገጽ ምን ተብሎ ይጠራል?",
+        options: [
+          { key: "ሀ", text: "ሥነ-ምኅዳር" },
+          { key: "ለ", text: "አምባ ምድር" },
+          { key: "ሐ", text: "የአየር ንብረት ክልል" },
+          { key: "መ", text: "የተፋሰስ ወሰን" }
+        ],
+        answer: "ሐ",
+        explanation: "የአየር ንብረት ክልል (Climatic Zone) ማለት ተመሳሳይ የሙቀት፣ የዝናብና የአየር ፀባይ መገለጫዎች የሚታዩበት ሰፊ የመሬት ገጽታ ወሰን ነው።"
+      },
+      {
+        id: 3,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "3. በምሥራቅ አፍሪካ ሰሜናዊ ክፍል የሚገኙ ብዙ አካባቢዎች ዋናውን ዝናብ የሚያገኙት በየትኞቹ ወራት ነው?",
+        options: [
+          { key: "ሀ", text: "ከሰኔ እስከ መስከረም" },
+          { key: "ለ", text: "ከታኅሣሥ እስከ የካቲት" },
+          { key: "ሐ", text: "በጥቅምት እና ሚያዝያ" },
+          { key: "መ", text: "ከጥር እስከ ሚያዝያ" }
+        ],
+        answer: "ሀ",
+        explanation: "በምሥራቅ አፍሪካ ሰሜናዊ ክፍል የሚገኙ አካባቢዎች (እንደ ኢትዮጵያ አብዛኛው ክፍል) ዋናውን የክረምት ዝናብ የሚያገኙት ከሰኔ እስከ መስከረም ባለው ወቅት ነው።"
+      },
+      {
+        id: 4,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "4. ከምድር ወገብ በስተደቡብ የሚገኙት የምሥራቅ አፍሪካ ሀገራት ዝናብ የሚያገኙት በየትኛው ወቅት ነው?",
+        options: [
+          { key: "ሀ", text: "ከሰኔ እስከ መስከረም" },
+          { key: "ለ", text: "ከታኅሣሥ እስከ የካቲት" },
+          { key: "ሐ", text: "ከሐምሌ እስከ ጥቅምት" },
+          { key: "መ", text: "ከመጋቢት እስከ ግንቦት" }
+        ],
+        answer: "ለ",
+        explanation: "ከምድር ወገብ በስተደቡብ የሚገኙት የምሥራቅ አፍሪካ ሀገራት የፀሐይ ቀጥተኛ ጨረር ወደ ደቡባዊ ንፍቀ ክበብ በሚያዘነብልበት ወቅት ማለትም ከታኅሣሥ እስከ የካቲት ባሉት ወራት ዋና ዝናባቸውን ያገኛሉ።"
+      },
+      {
+        id: 5,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "5. በምድር ወገብ አካባቢ ያሉ የምሥራቅ አፍሪካ ሀገራት ዝናብ የሚያገኙባቸው ወራት የትኞቹ ናቸው?",
+        options: [
+          { key: "ሀ", text: "ሰኔ እና ሐምሌ" },
+          { key: "ለ", text: "ጥር እና የካቲት" },
+          { key: "ሐ", text: "ጥቅምት እና ሚያዝያ" },
+          { key: "መ", text: "ነሐሴ እና መስከረም" }
+        ],
+        answer: "ሐ",
+        explanation: "በምድር ወገብ መስመር ዙሪያ የሚገኙ ሀገራት ፀሐይ በምድር ወገብ ላይ በምትቆይባቸው የሽግግር ወቅቶች ማለትም በጥቅምት እና በሚያዝያ ወራት ዝናብ ያገኛሉ።"
+      },
+      {
+        id: 6,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "6. በምሥራቅ አፍሪካ ከፍተኛ ቦታዎች ዓመታዊ አማካይ የሙቀት መጠን እስከ ስንት ዲግሪ ሴንቲ ግሬድ ዝቅ ሊል ይችላል?",
+        options: [
+          { key: "ሀ", text: "15° ሴ.ግሬ" },
+          { key: "ለ", text: "10° ሴ.ግሬ" },
+          { key: "ሐ", text: "0° ሴ.ግሬ" },
+          { key: "መ", text: "6° ሴ.ግሬ" }
+        ],
+        answer: "መ",
+        explanation: "የመማሪያ መጽሐፉ በገጽ 71 ላይ በግልጽ እንደሚያስረዳው፤ በኢትዮጵያ፣ ኬንያ እና ታንዛኒያ ባሉ ከፍተኛ ቦታዎች ዓመታዊ አማካይ የሙቀት መጠን እስከ 6° ሴንቲ ግሬድ ዝቅ ሊል ይችላል።"
+      },
+      {
+        id: 7,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "7. በዝቅተኛ ቦታዎች (lowlands) እና ረበዳማ ሥፍራዎች (depressions) የሚመዘገበው ዓመታዊ አማካይ የሙቀት መጠን ምን ያህል ነው?",
+        options: [
+          { key: "ሀ", text: "እስከ 26° ሴ.ግሬ" },
+          { key: "ለ", text: "እስከ 38° ሴ.ግሬ" },
+          { key: "ሐ", text: "እስከ 18° ሴ.ግሬ" },
+          { key: "መ", text: "እስከ 32° ሴ.ግሬ" }
+        ],
+        answer: "ሀ",
+        explanation: "በምሥራቅ አፍሪካ ዝቅተኛ ቦታዎች (Lowlands) እና ረበዳማ ሥፍራዎች (Depressions) ዓመታዊ አማካይ የሙቀት መጠናቸው እስከ 26° ሴንቲ ግሬድ ይመዘገባል።"
+      },
+      {
+        id: 8,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "8. በረሃ ተብለው የሚጠሩት አካባቢዎች ዓመታዊ አማካይ የዝናብ መጠናቸው ከስንት ሚሊሜትር በታች ሲሆን ነው?",
+        options: [
+          { key: "ሀ", text: "ከ500 ሚ.ሜ በታች" },
+          { key: "ለ", text: "ከ250 ሚ.ሜ በታች" },
+          { key: "ሐ", text: "ከ350 ሚ.ሜ በታች" },
+          { key: "መ", text: "ከ150 ሚ.ሜ በታች" }
+        ],
+        answer: "ለ",
+        explanation: "በጂኦግራፊና አካባቢ ሳይንስ ትምህርት ዓመታዊ አማካይ የዝናብ መጠናቸው ከ250 ሚሊ ሜትር በታች የሆኑ ደረቅ ስፍራዎች በረሃ በመባል ይመደባሉ።"
+      },
+      {
+        id: 9,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "9. በበረሃማ የአየር ንብረት ክልል ከፍተኛ ዕለታዊ የሙቀት ልዩነት እንዲኖር ያደረገው ዋናው ምክንያት ምንድን ነው?",
+        options: [
+          { key: "ሀ", text: "የደመና ሽፋን አለመኖር" },
+          { key: "ለ", text: "ከባሕር ጠለል በጣም ርቆ መገኘት" },
+          { key: "ሐ", text: "ከፍተኛ የተራራ ሰንሰለቶች መኖር" },
+          { key: "መ", text: "የቅዝቃዜ የውቅያኖስ ሞገድ መግባት" }
+        ],
+        answer: "ሀ",
+        explanation: "በበረሃማ አካባቢ የደመና ሽፋን ባለመኖሩ ምክንያት በቀን ፀሐይ መሬቱን በቀጥታ አሙቃው ትውላለች፤ በሌሊት ደግሞ ሙቀቱ ያለምንም ደመና ከልካይነት በፍጥነት ወደ ከባቢ አየር ስለሚበተን ሌሊቱ በጣም ይቀዘቅዛል። ይህም ከፍተኛ ዕለታዊ የሙቀት ልዩነት ያስከትላል።"
+      },
+      {
+        id: 10,
+        topic: "ክፍል 1፡ የአየር ንብረት ክልሎች እና የአየር ጠባይ",
+        question: "10. በሞቃትና እርጥብ የሐሩር አየር ንብረት እና በበረሃ መካከል የሚገኝ 'የሽግግር ቀጠና' በመባል የሚታወቀው የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "የደጋ የአየር ንብረት ክልል" },
+          { key: "ለ", text: "የውርጭ አየር ንብረት ክልል" },
+          { key: "ሐ", text: "የሣር ምድር ሞቃታማ የአየር ንብረት" },
+          { key: "መ", text: "የሐሩር ሞቃታማ የባሕር ዳርቻ" }
+        ],
+        answer: "ሐ",
+        explanation: "የሣር ምድር ሞቃታማ የአየር ንብረት ክልል በከፍተኛ እርጥበት ባለው የሐሩር ደን እና እጅግ ደረቅ በሆነው የበረሃ አየር ንብረት መካከል ስለሚገኝ 'የሽግግር ቀጠና' (Transitional zone) ይባላል።"
+      },
+
+      // 11 - 20
+      {
+        id: 11,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "11. የሐሩር ሞቃታማ የባሕር ዳርቻ የአየር ንብረት ክልል በአፍሪካ አህጉር በየትኛው ክፍል ብቻ ይገኛል?",
+        options: [
+          { key: "ሀ", text: "በሰሜናዊ ንፍቀ ክበብ ብቻ" },
+          { key: "ለ", text: "በምዕራባዊ ጠረፍ ብቻ" },
+          { key: "ሐ", text: "በምድር ወገብ መስመር ላይ ብቻ" },
+          { key: "መ", text: "በደቡባዊ ንፍቀ ክበብ ብቻ" }
+        ],
+        answer: "መ",
+        explanation: "ይህ የአየር ንብረት ክልል በአፍሪካ አህጉር ደቡባዊ ንፍቀ ክበብ (Southern Hemisphere) ብቻ የሚገኝ ሲሆን በተለይ እንደ ታንዛንያ እና ማዳጋስካር ባሉ ሀገራት ዳርቻ ይገኛል።"
+      },
+      {
+        id: 12,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "12. በኢትዮጵያና በኬንያ ከፍተኛ ተራራማ ቦታዎች የሚፈጠረው የተራራ ዝናብ በሳይንሳዊ ስሙ ምን ይባላል?",
+        options: [
+          { key: "ሀ", text: "ጉባገብ ዝናብ (Orographic relief)" },
+          { key: "ለ", text: "ግንባር ዝናብ (Frontal rain)" },
+          { key: "ሐ", text: "ስግረት ዝናብ (Convectional rain)" },
+          { key: "መ", text: "ሳይክሎኒክ ዝናብ (Cyclonic rain)" }
+        ],
+        answer: "ሀ",
+        explanation: "እርጥበት አዘል አየር ከተራራ ጋር ተጋጭቶ ወደ ላይ በሚወጣበት ጊዜ ተጨምቆ የሚጥለው ዝናብ ጉባገብ ዝናብ (Orographic / Relief Rainfall) ይባላል።"
+      },
+      {
+        id: 13,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "13. በምሥራቅ አፍሪካ የሞዛምቢክና የማዳጋስካርን ጠረፍ በማሞቅ ከፍተኛ ሙቀትና ዝናብ እንዲኖር ያደረገው የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "የቀዝቃዛ አየር ንፋስ" },
+          { key: "ለ", text: "የሞዛምቢክ ሞቃታማ የውቅያኖስ ሞገድ" },
+          { key: "ሐ", text: "የቀይ ባሕር ደረቅ አየር" },
+          { key: "መ", text: "የህንድ ውቅያኖስ ቀዝቃዛ ሞገድ" }
+        ],
+        answer: "ለ",
+        explanation: "የሞዛምቢክ ሞቃታማ የውቅያኖስ ሞገድ (Mozambique Warm Ocean Current) በጠረፉ አካባቢ ያለውን አየር በማሞቅ ከፍተኛ ትነትና የዝናብ መጠን እንዲኖር ያደርጋል።"
+      },
+      {
+        id: 14,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "14. ከምድር ወገብ እስከ 23 ½ ዲግሪ ሰሜንና ደቡብ በሚገኙ ቦታዎች ከፍተኛ ሙቀት የሚመዘገበው በምን ምክንያት ነው?",
+        options: [
+          { key: "ሀ", text: "የፀሐይ ጨረር በሰያፍ ስለሚያርፍ" },
+          { key: "ለ", text: "ከባሕር ያለው ርቀት በጣም ሰፊ ስለሆነ" },
+          { key: "ሐ", text: "የፀሐይ ጨረር በቀጥታ ስለሚያርፍ" },
+          { key: "መ", text: "ከፍተኛ የአየር ግፊት ስለሚፈጠር" }
+        ],
+        answer: "ሐ",
+        explanation: "ከምድር ወገብ እስከ 23 ½ ዲግሪ ሰሜንና ደቡብ ባለው የሐሩር ቀጠና የፀሐይ ጨረር በቀጥታ (በአቀባዊ) ስለሚያርፍና አነስተኛ የቦታ ስፋት ላይ ስለሚያተኩር ከፍተኛ ሙቀት ይፈጠራል።"
+      },
+      {
+        id: 15,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "15. ከሚከተሉት ውስጥ የአየር ንብረት ይዘት (Element) እንጂ የአየር ንብረት ተቆጣጣሪ (Control) ያልሆነው የቱ ነው?",
+        options: [
+          { key: "ሀ", text: "ከፍታ" },
+          { key: "ለ", text: "ከምድር ወገብ ያለው ርቀት" },
+          { key: "ሐ", text: "የውቅያኖስ ሞገድ" },
+          { key: "መ", text: "የሙቀት መጠን" }
+        ],
+        answer: "መ",
+        explanation: "የአየር ንብረት ተቆጣጣሪዎች 4ቱ ናቸው (ከፍታ፣ ከምድር ወገብ ያለው ርቀት፣ ከባሕር ያለው ርቀትና የውቅያኖስ ሞገድ)። የሙቀት መጠን ግን የአየር ንብረት 'ይዘት' (Element) እንጂ ተቆጣጣሪ አይደለም።"
+      },
+      {
+        id: 16,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "16. በባሕር ጠረፍ አካባቢ የሚገኙ ሀገራት ከውስጠኛ የየብስ ክፍሎች በምን ይለያሉ?",
+        options: [
+          { key: "ሀ", text: "በክረምትና በበጋ ጉልህ የሙቀት ልዩነት የላቸውም" },
+          { key: "ለ", text: "በበጋ ወቅት እጅግ በጣም ይቀዘቅዛሉ" },
+          { key: "ሐ", text: "በክረምት ወቅት ዝናብ ጨርሶ አያገኙም" },
+          { key: "መ", text: "ከፍተኛ የሆነ ዕለታዊ የሙቀት ልዩነት ይታይባቸዋል" }
+        ],
+        answer: "ሀ",
+        explanation: "ውሃ የየብስን ያህል በፍጥነት ስለማይሞቅና ስለማይቀዘቅዝ፤ በባሕር ጠረፍ አካባቢ ያሉ ሀገራት በክረምትና በበጋ ወቅት መካከል ጉልህ የሙቀት ልዩነት (Moderate climate) አይታይባቸውም።"
+      },
+      {
+        id: 17,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "17. በታንዛኒያ በብዛት ከሚገኙት ማዕድናት መካከል አንዱ የሆነውና ለኑክሌር ኃይል ማመንጫ የሚያገለግለው ማዕድን የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ቆርቆሮ" },
+          { key: "ለ", text: "ዩራኒየም" },
+          { key: "ሐ", text: "እምነ-በረድ" },
+          { key: "መ", text: "ሶዳ አሽ" }
+        ],
+        answer: "ለ",
+        explanation: "በታንዛኒያ በብዛት ከሚገኙት ማዕድናት አንዱ ዩራኒየም (Uranium) ሲሆን ለኑክሌር ኃይል ማመንጨት የሚያገለግል ቁልፍ ራዲዮአክቲቭ ማዕድን ነው።"
+      },
+      {
+        id: 18,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "18. እንደ ዩጋንዳ ባሉ የምሥራቅ አፍሪካ ሀገራት በብዛት የሚገኘውና እርሳስ (Pencil) ለማምረት የሚያገለግለው ማዕድን የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ኒኬል" },
+          { key: "ለ", text: "መዳብ" },
+          { key: "ሐ", text: "ግራፋይት" },
+          { key: "መ", text: "ብረት" }
+        ],
+        answer: "ሐ",
+        explanation: "ግራፋይት (Graphite) ለስላሳና ጥቁር የካርቦን ቅርጽ ያለው ማዕድን ሲሆን በዩጋንዳ በስፋት ይገኛል፤ ለጽሕፈት እርሳስ (Pencil lead) ማምረቻ ያገለግላል።"
+      },
+      {
+        id: 19,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "19. በሶማሊያ፣ በሩዋንዳ እና በሞዛምቢክ በጋራ በስፋት የሚገኘው የኃይል ማዕድን የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "የድንጋይ ከሰል" },
+          { key: "ለ", text: "ዩራኒየም" },
+          { key: "ሐ", text: "ዚርኮን" },
+          { key: "መ", text: "የተፈጥሮ ነዳጅ (ጋዝ)" }
+        ],
+        answer: "መ",
+        explanation: "በሰንጠረዥ 3.1 እንደተመለከተው፤ በሶማሊያ፣ በሩዋንዳ እና በሞዛምቢክ በጋራ የሚገኘው ዋነኛው የኃይል ምንጭ ማዕድን የተፈጥሮ ነዳጅ/ጋዝ (Natural Gas) ነው።"
+      },
+      {
+        id: 20,
+        topic: "ክፍል 2፡ የአየር ንብረት ተቆጣጣሪዎች እና የማዕድን ሀብት",
+        question: "20. በምሥራቅ አፍሪካ ሀገራት ማዕድናትን ከከርሰ ምድር አውጥቶ ጥቅም ላይ ለማዋል ዋነኛ ተግዳሮት ያልሆነው የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "በቂ የመሠረተ-ልማት አለመኖር" },
+          { key: "ለ", text: "በማዕድን ዘርፍ የሰለጠነ የሰው ኃይል እጥረት" },
+          { key: "ሐ", text: "በማዕድን ቁፋሮ የቴክኖሎጂ እጥረት" },
+          { key: "መ", text: "በማዕድን ሀብት የተሸፈነ መሬት ጨርሶ አለመኖር" }
+        ],
+        answer: "መ",
+        explanation: "ምሥራቅ አፍሪካ በተፈጥሮና ማዕድን ሀብት እጅግ የበለፀገች ቀጠና ናት። ዋና ዋናዎቹ ተግዳሮቶች የቴክኖሎጂ፣ የመሠረተ ልማትና የሰለጠነ የሰው ኃይል እጥረት እንጂ የማዕድን ሀብት አለመኖር አይደለም።"
+      },
+
+      // 21 - 30
+      {
+        id: 21,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "21. ተገቢ ያልሆነና ባህላዊ የማዕድን ቁፋሮ በአካባቢ ላይ ከሚያስከትላቸው አሉታዊ ተጽዕኖዎች መካከል የማይመደበው የቱ ነው?",
+        options: [
+          { key: "ሀ", text: "የአፈር ለምነትና የግብርና ምርታማነት በከፍተኛ ሁኔታ መጨመር" },
+          { key: "ለ", text: "የመሬት ገጽታና አቀማመጥ መበላሸት" },
+          { key: "ሐ", text: "በአፈር ውስጥ የሚኖሩ ጥቃቅን ዘ-አካላት መሞት" },
+          { key: "መ", text: "የዱር እንስሳት መኖሪያቸውን አጥተው መሰደድ" }
+        ],
+        answer: "ሀ",
+        explanation: "ባህላዊና ተገቢ ያልሆነ የማዕድን ቁፋሮ የአፈር ለምነትንና ምርታማነትን ያወድማል እንጂ በፍጹም አይጨምርም።"
+      },
+      {
+        id: 22,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "22. የተፈጥሮ ሀብቶች ሳይባክኑ ለረዥም ጊዜ እንዲያገለግሉና ለተተኪው ትውልድ እንዲተላለፉ ማድረግ ምን ይባላል?",
+        options: [
+          { key: "ሀ", text: "የተፈጥሮ ሀብት ብዝበዛ" },
+          { key: "ለ", text: "ውጤታማ የተፈጥሮ ሀብት አጠቃቀም" },
+          { key: "ሐ", text: "ሰው ሠራሽ ማዳበሪያ አጠቃቀም" },
+          { key: "መ", text: "ዳግም ድነና" }
+        ],
+        answer: "ለ",
+        explanation: "በአንድ አካባቢ የሚገኙ የተፈጥሮ ሀብቶችን በአግባቡ በመጠቀም፣ ለረዥም ጊዜ እንዲቆዩና ከትውልድ ወደ ትውልድ እንዲተላለፉ የማድረግ ተግባር 'ውጤታማ የተፈጥሮ ሀብት አጠቃቀም' (Sustainable Resource Management) ይባላል።"
+      },
+      {
+        id: 23,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "23. አፈር በዋናነት ከምን ከምን የሚፈጠር የላይኛው የመሬት አካል ነው?",
+        options: [
+          { key: "ሀ", text: "ከፕላስቲክና ከፋብሪካ ኬሚካሎች ውሕድ" },
+          { key: "ለ", text: "ከአሸዋ ድንጋይና ከጨው ክምችት ብቻ" },
+          { key: "ሐ", text: "ከአለቶች ስብርባሪ፣ ከዕፅዋትና ከእንስሳት ብስባሽ" },
+          { key: "መ", text: "ከባሕር አረፋና ከውቅያኖስ ዝቃጭ" }
+        ],
+        answer: "ሐ",
+        explanation: "አፈር (Soil) በአለቶች መፈራረስና መሰባበር (Weathering) እንዲሁም ከዕፅዋትና ከእንስሳት ብስባሽ (Humus/Organic matter) በረጅም ዘመናት የሚፈጠር የመሬት የላይኛው ለም አካል ነው።"
+      },
+      {
+        id: 24,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "24. በኢትዮጵያ፣ በኬንያ እና በታንዛኒያ ከፍተኛ ቦታዎች በስፋት የሚገኙት ለም የአፈር ዓይነቶች የትኞቹ ናቸው?",
+        options: [
+          { key: "ሀ", text: "ዜሮሶል እና ሶላንቻክ" },
+          { key: "ለ", text: "ፈራሶል እና አክሪሶል" },
+          { key: "ሐ", text: "ሊቶሶል እና የርሞሶል" },
+          { key: "መ", text: "አንዶሶል እና ኒቶሶል" }
+        ],
+        answer: "መ",
+        explanation: "በሰንጠረዥ 3.2 መሠረት አንዶሶል እና ኒቶሶል (Andosols & Nitosols) በእሳተ ገሞራ አመድና ለም ደጋማ ቦታዎች በኢትዮጵያ፣ ኬንያ እና ታንዛኒያ በስፋት ይገኛሉ።"
+      },
+      {
+        id: 25,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "25. ካምቢሶል፣ ላቪሶል እና ቨርቲሶል በመባል የሚታወቁት የአፈር ዓይነቶች በየትኛው ሀገር በስፋት ይገኛሉ?",
+        options: [
+          { key: "ሀ", text: "ኢትዮጵያ" },
+          { key: "ለ", text: "ሶማሊያ" },
+          { key: "ሐ", text: "ዛምቢያ" },
+          { key: "መ", text: "ሞዛምቢክ" }
+        ],
+        answer: "ሀ",
+        explanation: "በመማሪያ መጽሐፉ ገጽ 86 ሰንጠረዥ 3.2 ላይ እንደተገለጸው፤ ካምቢሶል፣ ላቪሶል እና ቨርቲሶል (የጥቁር አፈር ዓይነት) በኢትዮጵያ በስፋት የሚገኙ የአፈር ዓይነቶች ናቸው።"
+      },
+      {
+        id: 26,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "26. በደረቅና በረሃማ በሆኑት በሶማሊያና በኤርትራ ዝቅተኛ ሥፍራዎች በስፋት የሚገኘው የአፈር ዓይነት የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "አንዶሶል" },
+          { key: "ለ", text: "ዜሮሶል፣ ሊቶሶል እና ሶላንቻክ" },
+          { key: "ሐ", text: "ኒቶሶል" },
+          { key: "መ", text: "ቨርቲሶል" }
+        ],
+        answer: "ለ",
+        explanation: "ዜሮሶል፣ ሊቶሶል፣ የርሞሶል እና ሶላንቻክ (ጨዋማና ድንጋያማ አፈር) በደረቃማና በረሃማ የሶማሊያ እና ኤርትራ አካባቢዎች በስፋት ይገኛሉ።"
+      },
+      {
+        id: 27,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "27. በአንድ ወቅት ደን የነበረበት ቦታ ላይ የጠፉ ዛፎችን መልሶ የመትከልና የማልማት ዘዴ ምን ይባላል?",
+        options: [
+          { key: "ሀ", text: "ድነና (Afforestation)" },
+          { key: "ለ", text: "ዘር ማፈራረቅ (Crop rotation)" },
+          { key: "ሐ", text: "ዳግም ድነና (Reforestation)" },
+          { key: "መ", text: "ጣምራ የደን እርሻ (Agroforestry)" }
+        ],
+        answer: "ሐ",
+        explanation: "ዳግም ድነና (Reforestation) ማለት በቀድሞ ጊዜ ደን ኖሯቸው በሰው ሰራሽ ወይም በተፈጥሮ ምክንያት የተጨፈጨፉ ቦታዎችን መልሶ በዛፎች የመሸፈን ተግባር ነው።"
+      },
+      {
+        id: 28,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "28. ቀደም ሲል ደን ባልነበረበት ወይም ዕፅዋት ባልነበሩበት ባዶ ሥፍራ ላይ ችግኞችን የመትከል ተግባር ምን ይባላል?",
+        options: [
+          { key: "ሀ", text: "እርከን ሥራ" },
+          { key: "ለ", text: "አግድም ማረስ" },
+          { key: "ሐ", text: "ጣምራ ደን" },
+          { key: "መ", text: "ድነና (Afforestation)" }
+        ],
+        answer: "መ",
+        explanation: "ድነና (Afforestation) ማለት ቀደም ሲል ደን ወይም የዛፍ ሽፋን ባልነበረበት አዲስና ባዶ ሥፍራ ላይ አዳዲስ ችግኞችን ተክሎ የማልማት ተግባር ነው።"
+      },
+      {
+        id: 29,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "29. ከእርሻ ተግባራት ወይም ከከብት እርባታ ጋር ተቀናጅቶ ዛፎች የሚተከሉበት የተሻሻለ የግብርና ዘዴ ምን ይባላል?",
+        options: [
+          { key: "ሀ", text: "ጣምራ የደን እርሻ (Agroforestry)" },
+          { key: "ለ", text: "ሞኖካልቸር (Monoculture)" },
+          { key: "ሐ", text: "ዳግም ድነና (Reforestation)" },
+          { key: "መ", text: "እርከን ሥራ (Terracing)" }
+        ],
+        answer: "ሀ",
+        explanation: "ጣምራ የደን እርሻ (Agroforestry) ማለት አርሶ አደሮች በእርሻ ማሳቸው ላይ ሰብልና እንስሳትን ከዛፍ ተከላ ጋር አቀናጅተው በማልማት አፈርን፣ ምርታማነትንና አካባቢን የሚጠብቁበት ዘዴ ነው።"
+      },
+      {
+        id: 30,
+        topic: "ክፍል 3፡ የተፈጥሮ ሀብት እንክብካቤ እና የአፈር ዓይነቶች",
+        question: "30. በከፍተኛና ተዳፋት ቦታዎች ላይ የጎርፍን ፍጥነት ለመቀነስና አፈር እንዳይጠረግ የሚሠራው መደብ መሰል መከላከያ ምን ይባላል?",
+        options: [
+          { key: "ሀ", text: "አግድም ማረስ" },
+          { key: "ለ", text: "እርከን (Terracing)" },
+          { key: "ሐ", text: "ዘር ማፈራረቅ" },
+          { key: "መ", text: "ጉድጓድ ቁፋሮ" }
+        ],
+        answer: "ለ",
+        explanation: "እርከን (Terracing) ማለት በተዳፋት መሬት ላይ ደረጃ በደረጃ የሚሠራ መደብ መሰል ግንብ ሲሆን ቁልቁል የሚወርደውን ጎርፍ በማስቆም አፈር እንዳይሸረሸር ይከላከላል።"
+      },
+
+      // 31 - 40
+      {
+        id: 31,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "31. ዳገታማ በሆኑ የመሬት ክፍሎች ላይ ቁልቁል ሳይሆን መስመር ጠብቆ አግድም የማረስ ዘዴ ጥቅሙ ምንድን ነው?",
+        options: [
+          { key: "ሀ", text: "የመሬት መንቀጥቀጥን ሙሉ በሙሉ ይከላከላል" },
+          { key: "ለ", text: "የዝናብ ውሃ በፍጥነት ወደ ሸለቆ እንዲፈስ ያደርጋል" },
+          { key: "ሐ", text: "ቁልቁል የሚወርደውን የጎርፍ ፍጥነት ይቀንሳል" },
+          { key: "መ", text: "የአፈርን የጨው መጠን ከፍ ያደርጋል" }
+        ],
+        answer: "ሐ",
+        explanation: "አግድም ማረስ (Contour ploughing) ተዳፋትን አቋርጦ መስመር በመሥራት ውሃ እንዲቆይና ቁልቁል የሚወርደው የጎርፍ ፍጥነት እንዲቀንስ ያደርጋል።"
+      },
+      {
+        id: 32,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "32. በአንድ ማሳ ላይ የተለያዩ የሰብል ዘሮችን በየወቅቱ የመቀያየርና የመዝራት (Crop rotation) ዋነኛ ጥቅም ያልሆነው የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "የአረም እና የሰብል በሽታዎችን መቆጣጠር" },
+          { key: "ለ", text: "የአፈር ለምነት እንዳይሟጠጥ መጠበቅ" },
+          { key: "ሐ", text: "የሰው ሠራሽ ማዳበሪያ ፍጆታን መቀነስ" },
+          { key: "መ", text: "አፈሩ በፍጥነት እርጥበት አጥቶ እንዲደርቅ ማድረግ" }
+        ],
+        answer: "መ",
+        explanation: "ዘር ማፈራረቅ አፈሩ እንዲደርቅ አያደርግም፤ በተቃራኒው የአፈርን መዋቅር፣ ለምነትና እርጥበት ጠብቆ እንዲቆይ ያግዛል።"
+      },
+      {
+        id: 33,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "33. ከእንስሳት ፍግ፣ ከዕፅዋትና ከምግብ ተረፈ-ምርቶች የሚዘጋጅና ለአካባቢ ተስማሚ የሆነ የማዳበሪያ ዓይነት የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "የተፈጥሮ ማዳበሪያ (ኮምፖስት)" },
+          { key: "ለ", text: "የዩሪያ ኬሚካል ማዳበሪያ" },
+          { key: "ሐ", text: "ዳፕ (DAP) ማዳበሪያ" },
+          { key: "መ", text: "ሰው ሠራሽ ማዳበሪያ" }
+        ],
+        answer: "ሀ",
+        explanation: "የተፈጥሮ ማዳበሪያ (Compost) ከዕፅዋት ተረፈ-ምርት፣ ከእንስሳት ፍግና ብስባሽ የሚዘጋጅና አፈርን የማይበክል፣ ዘላቂ ለምነትን የሚሰጥ ማዳበሪያ ነው።"
+      },
+      {
+        id: 34,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "34. በመላው ምድር ላይ ከሚገኘው አጠቃላይ የውሃ መጠን ውስጥ በውቅያኖሶችና በባሕሮች ውስጥ የሚገኘው ጨዋማ ውሃ ስንት በመቶ ነው?",
+        options: [
+          { key: "ሀ", text: "70%" },
+          { key: "ለ", text: "97%" },
+          { key: "ሐ", text: "50%" },
+          { key: "መ", text: "2%" }
+        ],
+        answer: "ለ",
+        explanation: "በምድር ላይ ከሚገኘው አጠቃላይ ውሃ 97% የሚሆነው በውቅያኖሶችና ባሕሮች ውስጥ የሚገኝ ጨዋማ ውሃ ሲሆን ለመጠጥ አገልግሎት በቀጥታ አይውልም።"
+      },
+      {
+        id: 35,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "35. በመሬት ላይ ከሚገኘው አጠቃላይ ውሃ ውስጥ በሰሜንና ደቡብ ዋልታዎች በበረዶ መልክ የተጠራቀመው የውሃ መጠን ስንት ነው?",
+        options: [
+          { key: "ሀ", text: "1%" },
+          { key: "ለ", text: "5%" },
+          { key: "ሐ", text: "2%" },
+          { key: "መ", text: "10%" }
+        ],
+        answer: "ሐ",
+        explanation: "ከዓለማችን አጠቃላይ ውሃ 2 በመቶ (2%) የሚሆነው በዋልታዎችና በተራራ ጫፎች ላይ በበረዶ መልክ ተከማችቶ ይገኛል።"
+      },
+      {
+        id: 36,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "36. በሐይቆች፣ በወንዞችና በከርሰ-ምድር ውስጥ የሚገኘው ለሰው ልጆች አገልግሎት የሚውለው ንጹሕ ውሃ ስንት በመቶ ብቻ ነው?",
+        options: [
+          { key: "ሀ", text: "10%" },
+          { key: "ለ", text: "20%" },
+          { key: "ሐ", text: "5%" },
+          { key: "መ", text: "1%" }
+        ],
+        answer: "መ",
+        explanation: "ለሰው ልጅ አገልግሎት (ለመጠጥ፣ ለእርሻና ለንጽህና) ዝግጁ ሆኖ በሐይቆች፣ በወንዞችና በከርሰ ምድር የሚገኘው ንጹሕ ውሃ 1 በመቶ (1%) ብቻ ነው።"
+      },
+      {
+        id: 37,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "37. በምሥራቅ አፍሪካ ከሚገኙ ሐይቆች መካከል በጥልቀቱ በአፍሪካ አንደኛ በዓለም ደግሞ ሁለተኛ የሆነው የስምጥ ሸለቆ ሐይቅ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ታንጋኒካ ሐይቅ" },
+          { key: "ለ", text: "ቪክቶሪያ ሐይቅ" },
+          { key: "ሐ", text: "ጣና ሐይቅ" },
+          { key: "መ", text: "ኪቩ ሐይቅ" }
+        ],
+        answer: "ሀ",
+        explanation: "ታንጋኒካ ሐይቅ (Lake Tanganyika) 1435 ሜትር ጥልቀት ያለው ሲሆን፤ በጥልቀቱ ከአፍሪካ አንደኛ ከዓለም ደግሞ ከባይካል ሐይቅ ቀጥሎ ሁለተኛ ነው።"
+      },
+      {
+        id: 38,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "38. በሥፋቱ በአፍሪካ ትልቁ ሐይቅ የሆነውና ከስምጥ ሸለቆ ውጭ የሚገኘው የምሥራቅ አፍሪካ ሐይቅ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ማላዊ ሐይቅ" },
+          { key: "ለ", text: "ቪክቶሪያ ሐይቅ" },
+          { key: "ሐ", text: "ቱርካና ሐይቅ" },
+          { key: "መ", text: "አልበርት ሐይቅ" }
+        ],
+        answer: "ለ",
+        explanation: "ቪክቶሪያ ሐይቅ (Lake Victoria) በ83,000 ካሬ ኪሎ ሜትር ስፋቱ በአፍሪካ ትልቁ ሲሆን የሚገኘውም ከስምጥ ሸለቆ ውጭ ባለው ጥልቀት በሌለው ሰፋፊ ገባዳ መሬት ላይ ነው።"
+      },
+      {
+        id: 39,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "39. ከሚከተሉት ሐይቆች ውስጥ ከስምጥ ሸለቆ ውጭ የሚገኘው የኢትዮጵያ ትልቁ የተፈጥሮ ሐይቅ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ሻላ ሐይቅ" },
+          { key: "ለ", text: "ዝዋይ ሐይቅ" },
+          { key: "ሐ", text: "ጣና ሐይቅ" },
+          { key: "መ", text: "አባያ ሐይቅ" }
+        ],
+        answer: "ሐ",
+        explanation: "ጣና ሐይቅ በኢትዮጵያ ደጋማ ክፍል የሚገኝና ከስምጥ ሸለቆ ውጭ ያለ ትልቁ የተፈጥሮ ሐይቅ ነው። ሌሎች የተዘረዘሩት በስምጥ ሸለቆ ውስጥ ይገኛሉ።"
+      },
+      {
+        id: 40,
+        topic: "ክፍል 4፡ የአፈር ጥበቃ እና የምሥራቅ አፍሪካ የውሃ ሀብት",
+        question: "40. በኢትዮጵያ ውስጥ ለኤሌክትሪክ ኃይል ማመንጫ እና ለመስኖ አገልግሎት ተብሎ በሰው ሠራሽ መንገድ የተገደበው ሐይቅ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ቱርካና ሐይቅ" },
+          { key: "ለ", text: "ካሪባ ሐይቅ" },
+          { key: "ሐ", text: "ኤድዋርድ ሐይቅ" },
+          { key: "መ", text: "ቆቃ ሐይቅ" }
+        ],
+        answer: "መ",
+        explanation: "ቆቃ ሐይቅ በአዋሽ ወንዝ ላይ ለኤሌክትሪክ ኃይል ማመንጫና ለመስኖ የተገደበ ሰው ሠራሽ ሐይቅ (Artificial Reservoir) ነው።"
+      },
+
+      // 41 - 50
+      {
+        id: 41,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "41. በዛምቢያና ዚምባቡዌ ድንበር ላይ በዛምቤዚ ወንዝ ላይ የተገደበው ግዙፍ ሰው ሠራሽ ሐይቅ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ካሪባ ሐይቅ" },
+          { key: "ለ", text: "ካቦራባሳ ሐይቅ" },
+          { key: "ሐ", text: "ቆቃ ሐይቅ" },
+          { key: "መ", text: "ናኩሩ ሐይቅ" }
+        ],
+        answer: "ሀ",
+        explanation: "ካሪባ ሐይቅ (Lake Kariba) 5400 ካሬ ኪሎ ሜትር ስፋት ያለው ሲሆን በዛምቢያና ዚምባቡዌ ድንበር ላይ በዛምቤዚ ወንዝ ላይ የተገነባ ግዙፍ ሰው ሰራሽ ሐይቅ ነው።"
+      },
+      {
+        id: 42,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "42. ነጭ ዓባይና ጥቁር ዓባይ በሱዳን ዋና ከተማ ካርቱም ላይ ተገናኝተው የሚፈጥሩትና 6650 ኪ.ሜ ርዝመት ያለው የዓለማችን ረዥሙ ወንዝ ማን ይባላል?",
+        options: [
+          { key: "ሀ", text: "አማዞን ወንዝ" },
+          { key: "ለ", text: "ናይል ወንዝ" },
+          { key: "ሐ", text: "ኮንጎ ወንዝ" },
+          { key: "መ", text: "ዛምቤዚ ወንዝ" }
+        ],
+        answer: "ለ",
+        explanation: "የናይል ወንዝ (Nile River) 6650 ኪ.ሜ ርዝመት ያለው ሲሆን በካርቱም ላይ ከነጭና ጥቁር ዓባይ ተዋህዶ ወደ ሜዲትራኒያን ባሕር የሚፈስ የዓለማችን ረዥሙ ወንዝ ነው።"
+      },
+      {
+        id: 43,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "43. ከምዕራብ ሸዋ ደንዲ ወረዳ ተነስቶ 1200 ኪ.ሜ በመጓዝ አገር ውስጥ አፋር ክልል አቤ ሐይቅ ውስጥ ገብቶ የሚቀረው ወንዝ የቱ ነው?",
+        options: [
+          { key: "ሀ", text: "ገናሌ ወንዝ" },
+          { key: "ለ", text: "ተከዜ ወንዝ" },
+          { key: "ሐ", text: "አዋሽ ወንዝ" },
+          { key: "መ", text: "ባሮ ወንዝ" }
+        ],
+        answer: "ሐ",
+        explanation: "የአዋሽ ወንዝ ከአገር ውስጥ ሳይወጣ ወደ አፋር ክልል በመፍሰስ አቤ ሐይቅ (Lake Abbe) ውስጥ ገብቶ የሚቀር የኢትዮጵያ ውስጠ-ፈሳሽ ወንዝ ነው።"
+      },
+      {
+        id: 44,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "44. ከምዕራብ አርሲ ተራሮች ተነስቶ 2000 ኪ.ሜ ከተጓዘ በኋላ ህንድ ውቅያኖስ ሳይደርስ በሶማሊያ አሸዋ ውስጥ ሰምጦ የሚቀረው ወንዝ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ኦሞ ወንዝ" },
+          { key: "ለ", text: "ዋቢ ሸበሌ ወንዝ" },
+          { key: "ሐ", text: "ሩቩማ ወንዝ" },
+          { key: "መ", text: "ታና ወንዝ" }
+        ],
+        answer: "ለ",
+        explanation: "ዋቢ ሸበሌ ወንዝ 2000 ኪ.ሜ ቢጓዝም በደረቃማው የሶማሊያ በረሃ ከፍተኛ ትነትና የአሸዋ መሬት ምክንያት ውቅያኖስ ሳይደርስ አሸዋ ውስጥ ሰምጦ ይቀራል።"
+      },
+      {
+        id: 45,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "45. ከደቡብ-ምሥራቅ ኢትዮጵያ ተነስቶ የኬንያና ሶማሊያን ድንበር አቋርጦ ወደ ሕንድ ውቅያኖስ የሚገባውና በሶማሊያ 'ጁባ' ተብሎ የሚጠራው ወንዝ የቱ ነው?",
+        options: [
+          { key: "ሀ", text: "የገናሌ ወንዝ" },
+          { key: "ለ", text: "የሩፉጂ ወንዝ" },
+          { key: "ሐ", text: "የአዋሽ ወንዝ" },
+          { key: "መ", text: "የዓባይ ወንዝ" }
+        ],
+        answer: "ሀ",
+        explanation: "የገናሌ ወንዝ (Genale/Juba River) 1660 ኪ.ሜ በመጓዝ ከኢትዮጵያ ወጥቶ ሶማሊያ ሲደርስ 'ጁባ' ተብሎ ይጠራል፤ በመጨረሻም ሕንድ ውቅያኖስ ይገባል።"
+      },
+      {
+        id: 46,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "46. የታንዛንያ እና የሞዛምቢክን ሀገራት የተፈጥሮ ድንበር ሆኖ የሚያገለግለውና ወደ ሕንድ ውቅያኖስ የሚገባው ወንዝ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ታና ወንዝ" },
+          { key: "ለ", text: "ሩቩማ ወንዝ" },
+          { key: "ሐ", text: "ሩፉጂ ወንዝ" },
+          { key: "መ", text: "ዛምቤዚ ወንዝ" }
+        ],
+        answer: "ለ",
+        explanation: "ሩቩማ ወንዝ (Ruvuma River) 800 ኪ.ሜ ርዝመት ያለው ሲሆን በታንዛኒያ እና በሞዛምቢክ መካከል የተፈጥሮ ድንበር ሆኖ ያገለግላል።"
+      },
+      {
+        id: 47,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "47. የታወቀው የቪክቶሪያ ፏፏቴ እንዲሁም ካሪባና ካቦራባሳ የተባሉት የኤሌክትሪክ ኃይል ማመንጫ ግድቦች የሚገኙበት ወንዝ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ታና ወንዝ" },
+          { key: "ለ", text: "ናይል ወንዝ" },
+          { key: "ሐ", text: "ዛምቤዚ ወንዝ" },
+          { key: "መ", text: "ሩፉጂ ወንዝ" }
+        ],
+        answer: "ሐ",
+        explanation: "ዛምቤዚ ወንዝ (Zambezi River) ግዙፉን የቪክቶሪያ ፏፏቴ (Victoria Falls) እና ሁለቱን ታላላቅ ግድቦች ካሪባንና ካቦራባሳን በውስጡ ይዟል።"
+      },
+      {
+        id: 48,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "48. ከባሕር ጠለል በታች 120 ሜትር ዝቅ ብሎ የሚገኘውና የዱር አህያና ገመሬ ዝንጀሮ መኖሪያ የሆነው የበረሃ ሥነ-ምኅዳር የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "የካላሃሪ በረሃ" },
+          { key: "ለ", text: "የሰሃራ በረሃ" },
+          { key: "ሐ", text: "የኦጋዴን ቆላ" },
+          { key: "መ", text: "የደንከል በረሃ" }
+        ],
+        answer: "መ",
+        explanation: "በኢትዮጵያ አፋር ክልል የሚገኘው የደንከል በረሃ (Danakil Depression) ከባሕር ጠለል በታች 120 ሜትር ዝቅ ብሎ የሚገኝ ሲሆን የዱር አህያና ገመሬ ዝንጀሮ መኖሪያ ነው።"
+      },
+      {
+        id: 49,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "49. በኬንያና ታንዛኒያ ድንበር ላይ በየዓመቱ ዝናብና ለምለም ሣርን በመከተል በሚሊዮን የሚቆጠሩ የዱር እንስሳት የሚዘዋወሩበት ታዋቂው ፓርክ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ማሳይ ማራ እና ሴሬንጌቲ" },
+          { key: "ለ", text: "ባሌ ተራሮች ብሔራዊ ፓርክ" },
+          { key: "ሐ", text: "አዋሽ ብሔራዊ ፓርክ" },
+          { key: "መ", text: "ቪሩንጋ ብሔራዊ ፓርክ" }
+        ],
+        answer: "ሀ",
+        explanation: "ማሳይ ማራ (ኬንያ) እና ሴሬንጌቲ (ታንዛኒያ) በሚሊዮን የሚቆጠሩ የዱር እንስሳት (የሜዳ አህዮች፣ ጎሾች፣ አንበሶች) ዝናብን ተከትለው የሚዘዋወሩበት ታላቁ የተፈጥሮ ፍልሰት የሚካሄድበት ስፍራ ነው።"
+      },
+      {
+        id: 50,
+        topic: "ክፍል 5፡ የምሥራቅ አፍሪካ ወንዞች እና የዱር እንስሳት",
+        question: "50. በዩጋንዳ የተራራ ሰንሰለታማ ደን (ቪሩንጋ) ውስጥ በብዛት የሚገኙትና በዓለም አቀፍ ደረጃ በቁጥር እያነሱ ያሉ ብርቅዬ አጥቢ እንስሳት የትኞቹ ናቸው?",
+        options: [
+          { key: "ሀ", text: "የሜዳ አህዮች" },
+          { key: "ለ", text: "የተራራ ጎሬላዎች እና ቺምፓንዚዎች" },
+          { key: "ሐ", text: "የቀጭኔ ዝርያዎች" },
+          { key: "መ", text: "አቦሸማኔዎች" }
+        ],
+        answer: "ለ",
+        explanation: "በዩጋንዳ ቪሩንጋ (Virunga) ተራራማ ደኖች ውስጥ በዓለም አቀፍ ደረጃ ለመጥፋት የተቃረቡ ብርቅዬ የተራራ ጎሬላዎችና ቺምፓንዚዎች ይገኛሉ።"
+      },
+
+      // 51 - 60
+      {
+        id: 51,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "51. ከፍተኛ የዝናብ መጠን በሚያገኙና ከ1500 እስከ 1800 ሜትር ከፍታ ባላቸው ቦታዎች የሚበቅለው ደን የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "የቅጠለ ሰፋፊ ዛፎች ደን" },
+          { key: "ለ", text: "የሞቃት በረሃ እሾሃማ ዕፅዋት" },
+          { key: "ሐ", text: "የውርጭ አካባቢ ጥድ ደን" },
+          { key: "መ", text: "አጭር የሣር ምድር" }
+        ],
+        answer: "ሀ",
+        explanation: "የቅጠለ ሰፋፊ ዛፎች ደን (Broad-leaved forests) ከ1500-1800 ሜትር ከፍታ ባላቸውና ከፍተኛ ዝናብ በሚያገኙ ለም አካባቢዎች ይበቅላል፤ እንደ ዋንዛ፣ ወይራና ቀረሮ ያሉ ዛፎችን ይይዛል።"
+      },
+      {
+        id: 52,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "52. በሞቃታማ አየር ክልል ውስጥ የሚበቅሉ ዛፎች በበጋ ወራት ውሃ በትነት እንዳይወጣ ቅጠላቸውን የሚያረግፉት ለምንድን ነው?",
+        options: [
+          { key: "ሀ", text: "ተጨማሪ ቅዝቃዜ ለማግኘት" },
+          { key: "ለ", text: "የውሃ ብክነትን ለመቀነስና ድርቅን ለመቋቋም" },
+          { key: "ሐ", text: "አፈርን ለማዳበር ብቻ" },
+          { key: "መ", text: "አዳዲስ ቅርንጫፎችን በፍጥነት ለማውጣት" }
+        ],
+        answer: "ለ",
+        explanation: "ቅጠላቸውን የሚያረግፉ ዛፎች (Deciduous trees) በደረቅ ወቅት በቅጠሎቻቸው ቀዳዳዎች የሚወጣውን የትነት ውሃ (Transpiration) ለመቀነስና ድርቅን ለመቋቋም ሲሉ ቅጠላቸውን ያረግፋሉ።"
+      },
+      {
+        id: 53,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "53. የባሕር ጠለል ከፍታቸው ከ2000 ሜትር በላይ በሆኑ በጣም ቀዝቃዛ የውርጭ አካባቢዎች በብዛት የሚበቅለው የዛፍ ዓይነት የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ቁልቋል" },
+          { key: "ለ", text: "ዋንዛ" },
+          { key: "ሐ", text: "ጥድ" },
+          { key: "መ", text: "ግራር" }
+        ],
+        answer: "ሐ",
+        explanation: "የጥድ ዛፍ (Tid / Juniperus procera) ከ2000 ሜትር በላይ ከፍታ ባላቸው ብርዳማና የውርጭ ተራራማ አካባቢዎች በስፋት ይበቅላል።"
+      },
+      {
+        id: 54,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "54. በሞቃት በረሃማ ሥፍራዎች በቂ የዝናብ መጠን ባለመኖሩ ምክንያት የሚበቅሉት ዋና ዋና ዕፅዋት ምን ዓይነት ባሕርይ አላቸው?",
+        options: [
+          { key: "ሀ", text: "ቅጠለ ሰፋፊና ረጃጅም ግንድ አላቸው" },
+          { key: "ለ", text: "ሁልጊዜ ለምለምና ረዣዥም ቅጠል አላቸው" },
+          { key: "ሐ", text: "ረግረጋማ አፈር ብቻ ይፈልጋሉ" },
+          { key: "መ", text: "አጫጭር፣ እሾሃማና ውኃ አጣሪ (እንደ ቁልቋልና ግራር) ናቸው" }
+        ],
+        answer: "መ",
+        explanation: "የበረሃ ዕፅዋት ድርቅን ለመቋቋም ሲሉ ውሃ አጠራቅመው የሚይዙ ስጋማ ግንድ ያላቸው፣ ትነትን ለመቀነስ እሾሃማ ቅጠል ያበቀሉ (እንደ ቁልቋልና ግራር) ናቸው።"
+      },
+      {
+        id: 55,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "55. በምሥራቅ አፍሪካ ለደን መመናመንና ጭፍጨፋ መባባስ ዋነኛ መንስኤ የሆነው ማኅበራዊ ሁኔታ የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ፈጣን የሕዝብ ቁጥር መጨመር እና የእርሻ መሬት ፍላጎት" },
+          { key: "ለ", text: "የዝናብ መጠን ከዓመት ወደ ዓመት ያለ ልክ መብዛት" },
+          { key: "ሐ", text: "የዱር እንስሳት ቁጥር ከመጠን በላይ መብዛት" },
+          { key: "መ", text: "የወንዞችና የሐይቆች ሙላት" }
+        ],
+        answer: "ሀ",
+        explanation: "ፈጣን የሕዝብ ቁጥር እድገት ለምግብ እህል ማምረቻ ተጨማሪ የእርሻ መሬት፣ የማገዶና የግንባታ እንጨት ፍላጎት እንዲጨምር በማድረግ ለደን መጨፍጨፍ ዋነኛ መንስኤ ሆኗል።"
+      },
+      {
+        id: 56,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "56. በኢትዮጵያ አንዳንድ አካባቢዎች አርሶ አደሮች ሆን ብለው ደን የሚያቃጥሉበት ዋነኛ ምክንያት ምንድን ነው?",
+        options: [
+          { key: "ሀ", text: "ዝናብ በፍጥነት እንዲዘንብ ለማድረግ" },
+          { key: "ለ", text: "የእርሻ መሬት ለማስፋፋትና ሰብል አጥፊ እንስሳትን ለመከላከል" },
+          { key: "ሐ", text: "የቱሪስቶችን ቁጥር ለመሳብ" },
+          { key: "መ", text: "የአየር ሙቀትን ለመጨመር" }
+        ],
+        answer: "ለ",
+        explanation: "በገጽ 106 መጽሐፉ እንደሚጠቅሰው፤ አንዳንድ አርሶ አደሮች የእርሻ መሬት ለማስፋፋት እንዲሁም ሰብል የሚያበላሹትን እንደ ዝንጀሮ፣ ከርከሮና ጦጣ ያሉ እንስሳትን ለማባረር ሆን ብለው ደን ያቃጥላሉ።"
+      },
+      {
+        id: 57,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "57. በጣና ሐይቅ ላይ ተከስቶ የሐይቁን ህልውናና የዓሣ ሀብት አደጋ ላይ የጣለው መጤ አረም ምን ይባላል?",
+        options: [
+          { key: "ሀ", text: "ሙዝ አረም" },
+          { key: "ለ", text: "የቆንጥር አረም" },
+          { key: "ሐ", text: "የእምቦጭ አረም" },
+          { key: "መ", text: "የብርጉንድ አረም" }
+        ],
+        answer: "ሐ",
+        explanation: "የእምቦጭ አረም (Water Hyacinth) በጣና ሐይቅ ገጽ ላይ በፍጥነት በመሰራጨት የፀሐይ ብርሃንና ኦክስጅን በመከልከል የሐይቁን ሥነ-ምኅዳርና የዓሣ ሀብት አደጋ ላይ ጥሏል።"
+      },
+      {
+        id: 58,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "58. በኬንያ ትልቁና በጣም ጠቃሚ የሆነው ወንዝ ተነስቶ ወደ ሕንድ ውቅያኖስ የሚገባው የትኛው ነው?",
+        options: [
+          { key: "ሀ", text: "ታና ወንዝ" },
+          { key: "ለ", text: "አዋሽ ወንዝ" },
+          { key: "ሐ", text: "ናይል ወንዝ" },
+          { key: "መ", text: "ሩፉጂ ወንዝ" }
+        ],
+        answer: "ሀ",
+        explanation: "ታና ወንዝ (Tana River) 708 ኪ.ሜ ርዝመት ያለው ሲሆን በኬንያ ትልቁና በጣም ጠቃሚው ወንዝ ነው፤ ወደ ሕንድ ውቅያኖስም ይፈሳል።"
+      },
+      {
+        id: 59,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "59. በምሥራቅ አፍሪካ በመዳብ (Copper) ማዕድን ምርት በዋናነት የምትታወቀው ሀገር የቷ ናት?",
+        options: [
+          { key: "ሀ", text: "ሶማሊያ" },
+          { key: "ለ", text: "ዛምቢያ" },
+          { key: "ሐ", text: "ሩዋንዳ" },
+          { key: "መ", text: "ጅቡቲ" }
+        ],
+        answer: "ለ",
+        explanation: "ዛምቢያ (Zambia) በመዳብ (Copperbelt) ማዕድን ምርቷ በአፍሪካና በዓለም አቀፍ ደረጃ ግንባር ቀደም ተጠቃሽ አገር ናት።"
+      },
+      {
+        id: 60,
+        topic: "ክፍል 6፡ የተፈጥሮ ዕፅዋት እና የደን ጭፍጨፋ",
+        question: "60. ከሚከተሉት አማራጮች ውስጥ የተፈጥሮ ሀብትን ለመንከባከብና ለመጠበቅ ከሚረዱት ትክክለኛ ዘዴዎች ውስጥ የማይመደበው የቱ ነው?",
+        options: [
+          { key: "ሀ", text: "ታዳሽ የኃይል ምንጮችን (ፀሐይ፣ ንፋስ) መጠቀም" },
+          { key: "ለ", text: "በተቆረጡ ዛፎች ምትክ አዳዲስ ችግኞችን መትከል" },
+          { key: "ሐ", text: "የኢንዱስትሪ በካይ ቆሻሻዎችን ሳያጣሩ በቀጥታ ወደ ወንዝ መልቀቅ" },
+          { key: "መ", text: "ሀገር-በቀል ዕፅዋትና እንስሳት እንዳይጠፉ ጥበቃ ማድረግ" }
+        ],
+        answer: "ሐ",
+        explanation: "የፋብሪካና ኢንዱስትሪ በካይ ቆሻሻዎችን ሳያጣሩ ወደ ወንዝ መልቀቅ የተፈጥሮ ውሃማ አካላትንና ህይወት ያላቸውን ፍጥረታት የሚመርዝ አጥፊ ድርጊት ነው።"
+      }
+    ];
+
+    /* Global State Variables */
+    let studentData = {
+      name: "",
+      id: "",
+      examDate: ""
+    };
+    let currentIndex = 0;
+    // Map of answers: index -> { selectedKey: string, isCorrect: boolean }
+    let userAnswers = {};
+
+    function handleStartQuiz(event) {
+      event.preventDefault();
+      const nameInput = document.getElementById("student-name").value.trim();
+      const idInput = document.getElementById("student-id").value.trim();
+
+      if (!nameInput || !idInput) {
+        document.getElementById("reg-error").classList.remove("hidden");
+        return;
+      }
+
+      studentData.name = nameInput;
+      studentData.id = idInput;
+      studentData.examDate = new Date().toLocaleDateString('am-ET', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      // Update header info
+      document.getElementById("active-student-display").textContent = studentData.name;
+      document.getElementById("active-id-display").textContent = "መታወቂያ፡ " + studentData.id;
+      document.getElementById("header-status").classList.remove("hidden");
+
+      // Switch screen
+      document.getElementById("screen-register").classList.add("hidden");
+      document.getElementById("screen-quiz").classList.remove("hidden");
+      document.getElementById("screen-quiz").classList.add("flex");
+
+      renderPalette();
+      loadQuestion(0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderPalette() {
+      const container = document.getElementById("question-palette");
+      container.innerHTML = "";
+      QUIZ_QUESTIONS.forEach((q, idx) => {
+        const btn = document.createElement("button");
+        btn.id = `palette-btn-${idx}`;
+        btn.textContent = idx + 1;
+        btn.onclick = () => loadQuestion(idx);
+        btn.className = getPaletteBtnClasses(idx);
+        container.appendChild(btn);
+      });
+    }
+
+    function getPaletteBtnClasses(idx) {
+      const base = "h-8 text-xs font-semibold rounded-lg flex items-center justify-center transition border ";
+      const isCurrent = idx === currentIndex;
+      const ring = isCurrent ? " ring-2 ring-slate-900 ring-offset-1 font-bold scale-105 " : "";
+
+      if (userAnswers[idx]) {
+        if (userAnswers[idx].isCorrect) {
+          return base + "bg-emerald-500 text-white border-emerald-600" + ring;
+        } else {
+          return base + "bg-rose-500 text-white border-rose-600" + ring;
+        }
+      } else {
+        return base + "bg-slate-100 hover:bg-slate-200 text-slate-700 border-slate-200" + ring;
+      }
+    }
+
+    function updatePalette() {
+      QUIZ_QUESTIONS.forEach((_, idx) => {
+        const btn = document.getElementById(`palette-btn-${idx}`);
+        if (btn) {
+          btn.className = getPaletteBtnClasses(idx);
+        }
+      });
+    }
+
+    function loadQuestion(index) {
+      if (index < 0 || index >= QUIZ_QUESTIONS.length) return;
+      currentIndex = index;
+      const q = QUIZ_QUESTIONS[index];
+
+      // Counters & Badges
+      document.getElementById("q-counter").textContent = index + 1;
+      document.getElementById("badge-q-number").textContent = index + 1;
+      document.getElementById("topic-badge").textContent = q.topic;
+      document.getElementById("question-text").textContent = q.question;
+
+      // Update progress bar
+      const answeredCount = Object.keys(userAnswers).length;
+      const progressPercent = ((answeredCount / QUIZ_QUESTIONS.length) * 100).toFixed(1);
+      document.getElementById("quiz-progress-bar").style.width = `${Math.max(progressPercent, 1.66)}%`;
+
+      // Render options
+      const container = document.getElementById("options-container");
+      container.innerHTML = "";
+      const existingAnswer = userAnswers[index];
+
+      q.options.forEach(opt => {
+        const optBtn = document.createElement("button");
+        optBtn.id = `opt-${index}-${opt.key}`;
+        optBtn.onclick = () => handleSelectOption(index, opt.key);
+
+        let styleClasses = "w-full text-left p-3.5 sm:p-4 rounded-xl border font-medium text-sm sm:text-base flex items-start gap-3 transition cursor-pointer ";
+
+        if (!existingAnswer) {
+          // Unanswered state
+          styleClasses += "bg-white hover:bg-slate-50 border-slate-200 text-slate-800 shadow-2xs hover:border-brand-500";
+        } else {
+          // Question is already answered (Irreversible state)
+          optBtn.disabled = true;
+          styleClasses += "cursor-default ";
+
+          if (opt.key === q.answer) {
+            // Correct answer styling (Always highlight correct answer in emerald)
+            styleClasses += "bg-emerald-50 border-emerald-500 text-emerald-950 font-bold ring-2 ring-emerald-500/20";
+          } else if (existingAnswer.selectedKey === opt.key && !existingAnswer.isCorrect) {
+            // Wrong user selection in rose
+            styleClasses += "bg-rose-50 border-rose-500 text-rose-950 font-bold line-through ring-2 ring-rose-500/20";
+          } else {
+            // Other neutral options
+            styleClasses += "bg-slate-50 border-slate-200 text-slate-400 opacity-60";
+          }
+        }
+
+        optBtn.className = styleClasses;
+
+        // Option Key indicator pill
+        let pillClass = "w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shrink-0 ";
+        if (!existingAnswer) {
+          pillClass += "bg-slate-100 text-slate-700";
+        } else if (opt.key === q.answer) {
+          pillClass += "bg-emerald-600 text-white";
+        } else if (existingAnswer.selectedKey === opt.key && !existingAnswer.isCorrect) {
+          pillClass += "bg-rose-600 text-white";
+        } else {
+          pillClass += "bg-slate-200 text-slate-500";
+        }
+
+        optBtn.innerHTML = `
+          <span class="${pillClass}">${opt.key}</span>
+          <span class="pt-0.5">${opt.text}</span>
+        `;
+        container.appendChild(optBtn);
+      });
+
+      // Explanation handling
+      const expBox = document.getElementById("explanation-box");
+      const expContent = document.getElementById("explanation-content");
+      const fIcon = document.getElementById("feedback-icon");
+      const fTitle = document.getElementById("feedback-title");
+
+      if (existingAnswer) {
+        expBox.classList.remove("hidden");
+        expContent.textContent = q.explanation;
+
+        if (existingAnswer.isCorrect) {
+          expBox.className = "rounded-xl p-4 sm:p-5 border text-sm leading-relaxed mb-6 bg-emerald-50 border-emerald-200 text-emerald-950";
+          fIcon.className = "w-6 h-6 rounded-full flex items-center justify-center text-white text-xs bg-emerald-600 font-bold";
+          fIcon.textContent = "✓";
+          fTitle.textContent = "ትክክል መልሰዋል! (Correct)";
+          fTitle.className = "text-sm sm:text-base font-bold text-emerald-800";
+        } else {
+          expBox.className = "rounded-xl p-4 sm:p-5 border text-sm leading-relaxed mb-6 bg-rose-50 border-rose-200 text-rose-950";
+          fIcon.className = "w-6 h-6 rounded-full flex items-center justify-center text-white text-xs bg-rose-600 font-bold";
+          fIcon.textContent = "✕";
+          fTitle.textContent = `ተሳስቷል! ትክክለኛው መልስ፡ [${q.answer}] ነው`;
+          fTitle.className = "text-sm sm:text-base font-bold text-rose-800";
+        }
+      } else {
+        expBox.classList.add("hidden");
+      }
+
+      // Prev Button State
+      const prevBtn = document.getElementById("btn-prev");
+      prevBtn.disabled = (index === 0);
+
+      // Next / Skip vs Submit toggle
+      const nextBtn = document.getElementById("btn-next");
+      const submitBtn = document.getElementById("btn-final-submit");
+      const nextLabel = document.getElementById("next-btn-label");
+
+      if (index === QUIZ_QUESTIONS.length - 1) {
+        nextBtn.classList.add("hidden");
+        submitBtn.classList.remove("hidden");
+      } else {
+        nextBtn.classList.remove("hidden");
+        submitBtn.classList.add("hidden");
+        nextLabel.textContent = existingAnswer ? "ቀጣይ ጥያቄ (Next)" : "ዝለል / ቀጣይ (Skip / Next)";
+      }
+
+      updatePalette();
+      updateScoreSummary();
+    }
+
+    function handleSelectOption(qIndex, selectedKey) {
+      // Prevent re-selection (Irreversible Answer Rule)
+      if (userAnswers[qIndex]) {
+        return;
+      }
+
+      const q = QUIZ_QUESTIONS[qIndex];
+      const isCorrect = (selectedKey === q.answer);
+
+      userAnswers[qIndex] = {
+        selectedKey: selectedKey,
+        isCorrect: isCorrect
+      };
+
+      // Reload current question to trigger instant color highlight & scientific explanation
+      loadQuestion(qIndex);
+    }
+
+    function handleNextQuestion() {
+      if (currentIndex < QUIZ_QUESTIONS.length - 1) {
+        loadQuestion(currentIndex + 1);
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+      }
+    }
+
+    function handlePrevQuestion() {
+      if (currentIndex > 0) {
+        loadQuestion(currentIndex - 1);
+        window.scrollTo({ top: 120, behavior: 'smooth' });
+      }
+    }
+
+    function updateScoreSummary() {
+      let correct = 0;
+      let wrong = 0;
+      const answeredKeys = Object.keys(userAnswers);
+
+      answeredKeys.forEach(k => {
+        if (userAnswers[k].isCorrect) correct++;
+        else wrong++;
+      });
+
+      const unanswered = QUIZ_QUESTIONS.length - answeredKeys.length;
+
+      document.getElementById("nav-score").textContent = correct;
+      document.getElementById("stat-correct").textContent = correct;
+      document.getElementById("stat-wrong").textContent = wrong;
+      document.getElementById("stat-unanswered").textContent = unanswered;
+    }
+
+    function handleSubmitQuiz() {
+      const answeredCount = Object.keys(userAnswers).length;
+      if (answeredCount < QUIZ_QUESTIONS.length) {
+        const remaining = QUIZ_QUESTIONS.length - answeredCount;
+        const confirmMsg = `ገና ያልመለሷቸው ${remaining} ጥያቄዎች አሉ። እርግጠኛ ነዎት ፈተናውን አጠናቀው ውጤትዎን ማስረከብ ይፈልጋሉ?`;
+        // Use custom confirm message logic without browser confirm()
+        showToast(confirmMsg);
+      }
+      displayResultsScreen();
+    }
+
+    function displayResultsScreen() {
+      let correct = 0;
+      let wrong = 0;
+      QUIZ_QUESTIONS.forEach((q, idx) => {
+        if (userAnswers[idx]) {
+          if (userAnswers[idx].isCorrect) correct++;
+          else wrong++;
+        }
+      });
+      const skipped = QUIZ_QUESTIONS.length - (correct + wrong);
+      const percentage = ((correct / QUIZ_QUESTIONS.length) * 100).toFixed(1);
+
+      // Grade Assessment label
+      let gradeLabel = "እጅግ በጣም ጥሩ (Excellent)";
+      if (percentage < 50) gradeLabel = "ዝቅተኛ (Needs Improvement)";
+      else if (percentage < 70) gradeLabel = "ጥሩ (Satisfactory)";
+      else if (percentage < 85) gradeLabel = "በጣም ጥሩ (Very Good)";
+
+      // Populate Result Screen
+      document.getElementById("res-student-name").textContent = studentData.name;
+      document.getElementById("res-student-id").textContent = studentData.id;
+      document.getElementById("res-exam-date").textContent = studentData.examDate;
+      document.getElementById("res-exam-grade").textContent = `${gradeLabel} (${percentage}%)`;
+
+      document.getElementById("res-score-number").textContent = correct;
+      document.getElementById("res-percent").textContent = `${percentage}%`;
+      document.getElementById("res-wrong").textContent = wrong;
+      document.getElementById("res-skipped").textContent = skipped;
+
+      // Construct teacher email mailto link
+      const emailTeacher = "mesayferedegn2@gmail.com";
+      const emailSubject = encodeURIComponent(`Grade 6 Environmental Science Quiz Result: ${studentData.name} (ID: ${studentData.id})`);
+      
+      const emailBodyRaw = 
+`ክቡር መምህር፣ 
+የተማሪው የ6ኛ ክፍል አካባቢ ሳይንስ ምዕራፍ ሦስት (የተፈጥሮ አካባቢ) ፈተና ውጤት ሪፖርት እንደሚከተለው ቀርቧል፡-
+
+-------------------------------------------
+የተማሪ ሙሉ ስም፡ ${studentData.name}
+የመታወቂያ ቁጥር፡ ${studentData.id}
+የተፈተነበት ቀን፡ ${studentData.examDate}
+-------------------------------------------
+የፈተና ውጤት፡ ${correct} / 60
+የውጤት መቶኛ፡ ${percentage}%
+ትክክል የተመለሱ፡ ${correct}
+የተሳሳቱ ጥያቄዎች፡ ${wrong}
+ያልተመለሱ (የተዘለሉ)፡ ${skipped}
+ደረጃ፡ ${gradeLabel}
+-------------------------------------------
+ይህ ሪፖርት በቀጥታ ከተማሪው በይነ-መረብ ፈተና የተላከ ይፋዊ ውጤት ነው።`;
+
+      const emailBody = encodeURIComponent(emailBodyRaw);
+      document.getElementById("btn-email-teacher").href = `mailto:${emailTeacher}?subject=${emailSubject}&body=${emailBody}`;
+
+      // Show Result screen
+      document.getElementById("screen-quiz").classList.remove("flex");
+      document.getElementById("screen-quiz").classList.add("hidden");
+      document.getElementById("screen-result").classList.remove("hidden");
+      document.getElementById("screen-result").classList.add("flex");
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleCopyReport() {
+      let correct = 0;
+      let wrong = 0;
+      QUIZ_QUESTIONS.forEach((q, idx) => {
+        if (userAnswers[idx]) {
+          if (userAnswers[idx].isCorrect) correct++;
+          else wrong++;
+        }
+      });
+      const skipped = QUIZ_QUESTIONS.length - (correct + wrong);
+      const percentage = ((correct / QUIZ_QUESTIONS.length) * 100).toFixed(1);
+
+      const reportText = 
+`የአካባቢ ሳይንስ 6ኛ ክፍል - ምዕራፍ ሦስት የፈተና ውጤት ሪፖርት
+መምህር ኢሜይል፡ mesayferedegn2@gmail.com
+-------------------------------------------
+የተማሪ ሙሉ ስም፡ ${studentData.name}
+መታወቂያ ቁጥር፡ ${studentData.id}
+የተፈተነበት ቀን፡ ${studentData.examDate}
+ውጤት፡ ${correct} / 60 (${percentage}%)
+ትክክል፡ ${correct} | የተሳሳተ፡ ${wrong} | ያልተመለሰ፡ ${skipped}
+-------------------------------------------`;
+
+      // Copy to clipboard
+      const tempTextArea = document.createElement("textarea");
+      tempTextArea.value = reportText;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      try {
+        document.execCommand('copy');
+        document.getElementById("copy-btn-text").textContent = "✓ ሪፖርቱ ኮፒ ተደርጓል! (Copied!)";
+        setTimeout(() => {
+          document.getElementById("copy-btn-text").textContent = "የውጤት ሪፖርቱን ኮፒ አድርግ (Copy Text Report)";
+        }, 3000);
+        showToast("የውጤት ሪፖርቱ ወደ ክሊፕቦርድ ኮፒ ተደርጓል!");
+      } catch (e) {
+        showToast("ኮፒ ማድረግ አልተቻለም፤ እባክዎ በኢሜይል ቁልፉ ይላኩ።");
+      }
+      document.body.removeChild(tempTextArea);
+    }
+
+    function handleReviewQuiz() {
+      // Switch back to quiz view in review mode
+      document.getElementById("screen-result").classList.remove("flex");
+      document.getElementById("screen-result").classList.add("hidden");
+      document.getElementById("screen-quiz").classList.remove("hidden");
+      document.getElementById("screen-quiz").classList.add("flex");
+      loadQuestion(0);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function handleRestartQuiz() {
+      userAnswers = {};
+      currentIndex = 0;
+      document.getElementById("student-name").value = "";
+      document.getElementById("student-id").value = "";
+      document.getElementById("header-status").classList.add("hidden");
+
+      document.getElementById("screen-result").classList.remove("flex");
+      document.getElementById("screen-result").classList.add("hidden");
+      document.getElementById("screen-quiz").classList.remove("flex");
+      document.getElementById("screen-quiz").classList.add("hidden");
+
+      document.getElementById("screen-register").classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById("toast-message");
+      const toastText = document.getElementById("toast-text");
+      toastText.textContent = text;
+      toast.classList.remove("translate-y-20", "opacity-0");
+      setTimeout(() => {
+        toast.classList.add("translate-y-20", "opacity-0");
+      }, 3500);
+    }
+  </script>
+</body>
+</html>
